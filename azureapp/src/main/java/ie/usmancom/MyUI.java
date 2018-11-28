@@ -31,7 +31,7 @@ public class MyUI extends UI {
         final TextField name = new TextField();
         name.setCaption("Type your name here:");
 
-        Button button = new Button("button 13.2");
+        Button button = new Button("butt");
         button.addClickListener(e -> {
             layout.addComponent(new Label("Thanks " + name.getValue() + ", it works!"));
         });
