@@ -37,7 +37,7 @@ public class MyUI extends UI {
         });
 
         Button button2 = new Button("but2t");
-        button.addClickListener(e -> {
+        button2.addClickListener(e -> {
             layout.addComponent(new Label("Thanks " + name.getValue() + ", it works!"));
         });
 
