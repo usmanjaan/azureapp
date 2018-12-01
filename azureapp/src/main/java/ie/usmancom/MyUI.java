@@ -1,5 +1,8 @@
 package ie.usmancom;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+
 import javax.servlet.annotation.WebServlet;
 
 import com.vaadin.annotations.Theme;
@@ -26,22 +29,35 @@ public class MyUI extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
+        Connection connection = null;
+        String connectionString = "jdbc:sqlserver://classdbtest.database.windows.net:1433;" + "database=classDB;"
+                + "user=usmanshahid18@classdbtest;" + "password=Appleipod@1;" + "encrypt=true;"
+                + "trustServerCertificate=false;" + "hostNameInCertificate=*.database.windows.net;"
+                + "loginTimeout=30;";
+
+        // Create the connection object
+
         final VerticalLayout layout = new VerticalLayout();
 
         final TextField name = new TextField();
         name.setCaption("Type your name here:");
 
-        Button button = new Button("butt");
+        Button button = new Button("Please work 23456");
         button.addClickListener(e -> {
             layout.addComponent(new Label("Thanks " + name.getValue() + ", it works!"));
         });
 
-        Button button2 = new Button("but2t");
-        button2.addClickListener(e -> {
-            layout.addComponent(new Label("Thanks " + name.getValue() + ", it works!"));
-        });
-
-        layout.addComponents(name, button, button2);
+        try {
+            // Connect with JDBC driver to a database
+            connection = DriverManager.getConnection(connectionString);
+            // Add a label to the web app with the message and name of the database we
+            // connected to
+            layout.addComponent(new Label("Connected to database: " + connection.getCatalog()));
+        } catch (Exception e) {
+            // This will show an error message if something went wrong
+            layout.addComponent(new Label(e.getMessage()));
+        }
+        layout.addComponents(name, button);
 
         setContent(layout);
     }
