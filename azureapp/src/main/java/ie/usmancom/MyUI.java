@@ -57,14 +57,16 @@ public class MyUI extends UI {
             // connected to
             // layout.addComponent(new Label("Connected to database: " +
             // connection.getCatalog()));
-            ResultSet rs = connection.createStatement()
-                    .executeQuery("SELECT first_name,last_name,paid amount FROM customerTable where paid = 'true';");
+            // ResultSet rs = connection.createStatement().executeQuery("SELECT * FROM
+            // customerTable;");
             // Convert the resultset that comes back into a List - we need a Java class to
             // represent the data (Customer.java in this case)
             // Convert the resultset that comes back into a List - we need a Java class to
             // represent the data (Customer.java in this case)
             List<Customer> customers = new ArrayList<Customer>();
             // While there are more records in the resultset
+            ResultSet rs = connection.createStatement()
+                    .executeQuery("SELECT * FROM customerTable WHERE paid = 'false' ORDER BY AMOUNT DESC;");
             while (rs.next()) {
                 // Add a new Customer instantiated with the fields from the record (that we
                 // want, we might not want all the fields, note how I skip the id)
