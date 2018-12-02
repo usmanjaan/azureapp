@@ -57,7 +57,8 @@ public class MyUI extends UI {
             // connected to
             // layout.addComponent(new Label("Connected to database: " +
             // connection.getCatalog()));
-            ResultSet rs = connection.createStatement().executeQuery("SELECT * FROM customerTable;");
+            ResultSet rs = connection.createStatement()
+                    .executeQuery("SELECT first_name,last_name,paid amount FROM customerTable where paid = 'true';");
             // Convert the resultset that comes back into a List - we need a Java class to
             // represent the data (Customer.java in this case)
             // Convert the resultset that comes back into a List - we need a Java class to
